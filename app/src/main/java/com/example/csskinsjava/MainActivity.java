@@ -1,8 +1,11 @@
 package com.example.csskinsjava;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -12,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,7 +23,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
     private static final String BASE_URL = "http://192.168.1.99:8080/api/";
     private List<Skin> skinList;
     private Spinner spinner;
@@ -45,15 +48,27 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     skinList = response.body();
                     populateSpinner();
-                    Log.d(TAG, "Response: " + skinList.toString());
-                } else {
-                    Log.e(TAG, "Failed to get skins. Code: " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Skin>> call, Throwable t) {
-                Log.e(TAG, "Failed to get skins. Error: " + t.getMessage());
+                // Error handling if needed
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int selectedSkinId = skinList.get(position).getId();
+                Intent intent = new Intent(MainActivity.this, SkinDetailsActivity.class);
+                intent.putExtra("selectedSkinId", selectedSkinId);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
             }
         });
     }
@@ -67,5 +82,4 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
-
 }

@@ -23,7 +23,7 @@ public class SkinAdapter extends RecyclerView.Adapter<SkinAdapter.SkinViewHolder
     @Override
     public void onBindViewHolder(@NonNull SkinViewHolder holder, int position) {
         Skin skin = skinList.get(position);
-        holder.textViewName.setText(skin.getName()); // Use textViewName here
+        holder.textViewName.setText(skin.getName());
     }
 
     @Override
@@ -32,11 +32,11 @@ public class SkinAdapter extends RecyclerView.Adapter<SkinAdapter.SkinViewHolder
     }
 
     public static class SkinViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewName; // Correct the variable name
+        TextView textViewName;
 
         public SkinViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewName = itemView.findViewById(R.id.textViewName); // Correct the ID here
+            textViewName = itemView.findViewById(R.id.textViewName);
         }
     }
 }

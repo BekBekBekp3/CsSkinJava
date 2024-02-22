@@ -8,13 +8,39 @@
     tools:context=".SkinDetailsActivity">
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/textViewDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name"
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <!-- Add other TextViews to display additional details of the skin -->
+    <ImageView
+        android:id="@+id/imageViewSkin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true" />
+
+    <TextView
+        android:id="@+id/textViewStatTrak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:text="Delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonUpdate"
+        android:text="Update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>
